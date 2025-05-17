@@ -14,6 +14,10 @@ Set-ExecutionPolicy Unrestricted -Scope Process
 
 Type these code in command line and activate virtual environment.
 
+use code:
+python run.py 
+to set up localhost connection.
+
 ## Author
 Akhil 
 agileee
