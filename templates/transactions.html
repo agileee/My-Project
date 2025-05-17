@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles2.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .transaction-container {
+            text-align: center;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            width: 50%;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .transaction-container h1, h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .transaction-form input {
+            width: 90%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .transaction-form button {
+            background-color: #1bab85;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+            width: 95%;
+            display: block;
+            margin: 10px auto;
+        }
+
+        .transaction-form button:hover {
+            background-color: #159e77;
+        }
+
+        .transaction-container a {
+            display: inline-block;
+            margin-top: 15px;
+            color: #1bab85;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 15px;
+            border: 1px solid #1bab85;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .transaction-container a:hover {
+            background-color: #1bab85;
+            color: white;
+        }
+
+        .transaction-history {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #1bab85;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="{{ url_for('main.dashboard') }}">Home</a></li>
+            <li><a href="{{ url_for('main.deposit') }}">Deposit</a></li>
+            <li><a href="{{ url_for('main.transactions') }}" class="active">Transactions</a></li>
+            <li><a href="{{ url_for('main.balance') }}">Balance</a></li>
+            <li><a href="{{ url_for('main.profile') }}">Profile</a></li>
+            <li><a href="{{ url_for('main.logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="transaction-container">
+        <h1>Send Money</h1>
+        <form class="transaction-form" action="{{ url_for('main.transactions') }}" method="POST">
+            <input type="text" name="account_number" placeholder="Enter Recipient's Account Number" required>
+            <input type="number" name="amount" placeholder="Enter Amount" min="1" required>
+            <input type="password" name="transaction_pin" placeholder="Enter Your Transaction PIN" required>
+            <button type="submit">Send Money</button>
+        </form>
+
+        <div class="transaction-history">
+            <h2>Transaction History</h2>
+            {% if transactions %}
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Account</th>
+                        <th>Transaction Type</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                    </tr>
+                    {% for transaction in transactions %}
+                    <tr>
+                        <td>{{ transaction[0] }}</td>
+                        <td>
+                            {% if transaction[1] == user_account %}
+                                Sent to {{ transaction[6] }}
+                            {% else %}
+                                Received from {{ transaction[1] }}
+                            {% endif %}
+                        </td>
+                        <td>{{ transaction[4] }}</td>
+                        <td>${{ transaction[3] }}</td>
+                        <td>{{ transaction[5] }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p>No transactions found.</p>
+            {% endif %}
+        </div>
+        <a href="{{ url_for('main.dashboard') }}">Back to Dashboard</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #dcdcdc;
+    color: #505552;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1bab85;
+    padding: 15px 20px;
+    color: white;
+    position: relative;
+}
+
+.logo-img {
+    height: 50px;
+    width: auto;
+    display: block;
+    position: absolute;
+    left: 20px; /* Keep logo on the left */
+    top: 18%; 
+}
+
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.dashboard-content {
+    text-align: center;
+    margin-top: 120px; /* Increased margin to push content further down */
+}
+
+h1 {
+    font-size: 28px;
+    margin-top: 50px; /* Push heading further down */
+}
+
+p {
+    font-size: 18px;
+    margin-top: 10px; /* Adjust paragraph spacing */
+}
+
+.balance-section {
+    background-color: white;
+    padding: 20px;
+    margin: 60px auto; /* Increased margin to push it further down */
+    width: 50%;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.balance-amount {
+    font-size: 32px;
+    font-weight: bold;
+    color: #0044cc;
+}

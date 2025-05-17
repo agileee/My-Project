@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles2.css') }}">
+    <style>
+        .balance-container {
+            text-align: center;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            width: 60%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #1bab85;
+        }
+
+        .balance-amount {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .summary-box {
+            margin: 30px 0;
+        }
+
+        .summary-box p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .transactions {
+            margin: 30px 0;
+        }
+
+        .transactions table {
+            margin: auto;
+            width: 80%;
+            border-collapse: collapse;
+        }
+
+        .transactions th, .transactions td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .quick-actions a {
+            background-color: #1bab85;
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 5px;
+            display: inline-block;
+        }
+
+        .quick-actions a:hover {
+            background-color: #159e77;
+        }
+    </style>
+</head>
+<body>
+    <div class="balance-container">
+        <h1>Your Balance</h1>
+        <div class="balance-amount">${{ "%.2f"|format(balance) }}</div>
+
+        <div class="summary-box">
+            <h2>Summary</h2>
+            <p>Total Deposits: ${{ "%.2f"|format(total_deposit) }}</p>
+            <p>Total Withdrawals: ${{ "%.2f"|format(total_withdrawal) }}</p>
+            <p>Money Spent: {{ spent_percent }}%</p>
+            <p>Money Saved: {{ saved_percent }}%</p>
+        </div>
+
+        <div class="transactions">
+            <h2>Recent Transactions</h2>
+            {% if transactions %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Amount</th>
+                            <th>Type</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for t in transactions %}
+                        <tr>
+                            <td>${{ "%.2f"|format(t[0]) }}</td>
+                            <td>{{ "Credit" if t[0] > 0 else "Debit" }}</td>
+                            <td>{{ t[1].strftime("%Y-%m-%d") }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No recent transactions found.</p>
+            {% endif %}
+        </div>
+
+        <div class="quick-actions">
+            <a href="{{ url_for('main.dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('main.deposit') }}">Deposit</a>
+            <a href="{{ url_for('main.transactions') }}">Transfer</a>
+        </div>
+    </div>
+</body>
+</html>

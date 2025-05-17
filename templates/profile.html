@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles2.css') }}">
+    <style>
+        .profile-container {
+            padding-top: 100px;
+            text-align: center;
+        }
+
+        /* Fixed Profile Picture Styling */
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #1bab85;
+            margin: 0 auto 20px auto; /* Center the image and add bottom margin */
+            display: block;
+            background-color: white; /* Ensures it looks clean */
+        }
+
+        .user-info {
+            background-color: white;
+            width: 50%;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        .user-info h2 {
+            margin-bottom: 20px;
+            color: #1bab85;
+        }
+
+        .user-info p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Logo" class="logo-img">
+        </div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('main.dashboard') }}">Home</a></li>
+            <li><a href="{{ url_for('main.deposit') }}">Deposit</a></li>
+            <li><a href="{{ url_for('main.transactions') }}">Transactions</a></li>
+            <li><a href="{{ url_for('main.balance') }}">Balance</a></li>
+            <li><a href="{{ url_for('main.profile') }}" class="active">Profile</a></li>
+            <li><a href="{{ url_for('main.logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Profile Content -->
+    <div class="profile-container">
+        <img src="{{ url_for('static', filename='default-profile.jpg') }}" alt="Profile Picture" class="profile-picture">
+
+        <div class="user-info">
+            <h2>User Information</h2>
+            <p><strong>Name:</strong> {{ user[0] }}</p>
+            <p><strong>Email:</strong> {{ user[1] }}</p>
+            <p><strong>Account Number:</strong> {{ user[2] }}</p>
+            <p><strong>Balance:</strong> ${{ "%.2f"|format(user[3]) }}</p>
+        </div>
+    </div>
+</body>
+</html>

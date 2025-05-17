@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles2.css') }}">
+    <style>
+        .deposit-container {
+            text-align: center;
+            margin-top: 170px;
+            background-color: white;
+            padding: 30px;
+            width: 40%;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .deposit-container h1 {
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .deposit-container input {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .deposit-container button {
+            background-color: #1bab85;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .deposit-container button:hover {
+            background-color: #159e77;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 15px;
+            color: #1bab85;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 15px;
+            border: 1px solid #1bab85;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #1bab85;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Logo" class="logo-img">
+        </div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('main.dashboard') }}">Home</a></li>
+            <li><a href="{{ url_for('main.deposit') }}">Deposit</a></li>
+            <li><a href="{{ url_for('main.transactions') }}">Transactions</a></li>
+            <li><a href="{{ url_for('main.balance') }}">Balance</a></li>
+            <li><a href="{{ url_for('main.profile') }}">Profile</a></li>
+            <li><a href="{{ url_for('main.logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Deposit Form -->
+    <div class="deposit-container">
+        <h1>Make a Deposit</h1>
+        <form action="{{ url_for('main.deposit') }}" method="POST">
+            <input type="number" name="amount" placeholder="Enter Amount" required>
+            <button type="submit">Deposit</button>
+        </form>
+        <a href="{{ url_for('main.dashboard') }}" class="back-button">Back to Dashboard</a>
+    </div>
+
+</body>
+</html>

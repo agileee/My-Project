@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles2.css') }}">
+    <style>
+        .flash-messages {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+        .alert {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            animation: fadeOut 5s forwards; /* Fade out after 5 seconds */
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            90% { opacity: 0.1; }
+            100% { display: none; opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Logo" class="logo-img">
+        </div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('main.dashboard') }}">Home</a></li>
+            <li><a href="{{ url_for('main.deposit') }}">Deposit</a></li>
+            <li><a href="{{ url_for('main.transactions') }}">Transactions</a></li>
+            <li><a href="{{ url_for('main.balance') }}">Balance</a></li>
+            <li><a href="{{ url_for('main.profile') }}">Profile</a></li>
+            <li><a href="{{ url_for('main.logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-content">
+        <h1>Welcome, {{ name }}</h1>
+        <p>Manage your finances efficiently!</p>
+
+        <!-- Total Balance Section -->
+        <div class="balance-section">
+            <h2>Total Balance</h2>
+            <p class="balance-amount">${{ balance }}</p>
+        </div>
+    </div>
+</body>
+</html>

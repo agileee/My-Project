@@ -1,0 +1,103 @@
+/* FOR HOME AND REGISTERING */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #dcdcdc; /* Soft gray background */
+    margin: 0;
+}
+
+.container {
+    background: rgb(255, 255, 255);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow for depth */
+    text-align: center;
+    width: 600px; /* Increased width for a more horizontal layout */
+}
+
+h1{
+    color:#22bea7;
+}
+
+h2{
+    color:#505552;
+    margin-bottom:45px;
+}
+
+/* Header styling for Personal Finance Manager */
+.header {
+    font-size: 24px;
+    font-weight: bold;
+    color: #505552; /* Deep blue */
+    margin-bottom: 20px; /* Space below header */
+}
+
+/* Centering form inputs */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Styling input fields */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Submit button */
+button {
+    width: 100%;
+    padding: 12px;
+    background: #22bea7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #1bab85;
+}
+
+/* Login link styling */
+a {
+    text-decoration: none;
+    color: #224abe;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px; /* Adjust the gap size as needed */
+    justify-content: center; /* Optional: Centers the buttons horizontally */
+}
+
+/* Optional button styling */
+.btn {
+    padding: 10px 20px;
+    background-color: #22bea7; /* Deep blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #1bab85;
+}
+
+h1, h2 {
+    font-family: "Arial", "Helvetica", sans-serif; /* Consistent font across headers */
+}

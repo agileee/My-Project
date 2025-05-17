@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2 class="header">PERSONAL FINANCE MANAGER</h2>
+        
+        <h1>Register</h1>
+        <form action="{{ url_for('main.register') }}" method="POST">
+            <input type="text" name="name" placeholder="Enter Name" required>
+            <input type="text" name="account_number" placeholder="Enter Account Number" required>
+            <input type="password" name="transaction_pin" placeholder="Enter Transaction PIN" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="{{ url_for('main.login') }}">Login here</a></p>
+    </div>
+</body>
+</html>

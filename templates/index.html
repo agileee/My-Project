@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container" style="width: 400px;">
+        <h2>WELCOME TO FINANCE MANAGER</h2>
+        <div class="buttons">
+            <a href="{{ url_for('main.register') }}" class="btn">Register</a>
+            <a href="{{ url_for('main.login') }}" class="btn">Login</a>
+        </div>
+    </div>
+</body>
+</html>
